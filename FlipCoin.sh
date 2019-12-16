@@ -2,16 +2,33 @@
 
 echo "Welcome to FlipCoin"
 
-head=0
-tail=0
 
-random=$(( RANDOM % 2))
-if [[ $random -eq 1 ]]
-then
-	head=$(( head + 1 ))
-else
-	tail=$(( tail + 1 ))
-fi
+read -p "Enter number of the time you want to flip a coin" flipNumber
 
-echo $head
-echo $tail
+declare -A flipCoin
+coinNum=2
+H=0
+T=0
+for(( i=0;i<$flipNumber;i++))
+do
+	for(( j=0; j<$coinNum; j++ ))
+	do
+		coin=""
+		random=$(( RANDOM % 2 ))
+		if [[ $random -eq 1 ]]
+		then
+			coin="$coin"H
+		else
+			coin="$coin"T
+		fi
+	done
+
+echo "$coin"
+flipCoin[$coin]=$(( ${flipCoin[$coin]} + 1 ))
+done
+
+for i in ${!flipCoin[@]}
+do
+	value=${flipCoin[$i]}
+	echo "$i $(( ( $value * 100) / $flipNumber))"
+done
