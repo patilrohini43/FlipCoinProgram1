@@ -6,7 +6,7 @@ echo "Welcome to FlipCoin"
 read -p "Enter number of the time you want to flip a coin" flipNumber
 
 declare -A flipCoin
-coinNum=2
+coinNum=3
 H=0
 T=0
 for(( i=0;i<$flipNumber;i++))
